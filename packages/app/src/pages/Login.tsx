@@ -52,7 +52,6 @@ export const Login: React.FC = () => {
 
       login({ accessToken, refreshToken }, user);
 
-      // Redirect by role
       if (user.role === 'SAFAI_MITRA') {
         navigate('/safai-mitra/dashboard');
       } else {
@@ -65,15 +64,22 @@ export const Login: React.FC = () => {
     }
   };
 
+  // Quick Developer Bypass for Testing / Demo
+  const handleDevBypass = () => {
+    login(
+      { accessToken: 'dev-mock-token', refreshToken: 'dev-mock-refresh' },
+      { id: 'dev-user-1', phone: '9876543210', role: 'MANAGER', name: 'Saransh Jain' }
+    );
+    navigate('/manager/dashboard');
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col justify-center items-center p-4 transition-colors duration-200 relative">
-      {/* Top right theme toggle */}
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
 
       <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6 transition-colors">
-        {/* Brand Header */}
         <div className="text-center space-y-1">
           <div className="inline-flex p-3 bg-emerald-100 dark:bg-emerald-950/80 rounded-2xl text-3xl">
             🌱
@@ -124,6 +130,15 @@ export const Login: React.FC = () => {
               }`}
             >
               <span>{isLoading ? 'जांच हो रही है...' : 'आगे बढ़ें (OTP भेजें) →'}</span>
+            </button>
+
+            {/* Quick Demo Bypass Button */}
+            <button
+              type="button"
+              onClick={handleDevBypass}
+              className="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-2xl font-bold text-sm transition-all border border-slate-300 dark:border-slate-700"
+            >
+              🚀 Skip to Dashboard (Dev Bypass)
             </button>
           </form>
         ) : (

@@ -1,0 +1,138 @@
+version: "3.9"
+
+services:
+  # MongoDB 7 — primary data store
+  mongodb:
+    image: mongo:7
+    container_name: prithvi-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: prithvi
+      MONGO_INITDB_ROOT_PASSWORD: prithvi_dev_secret
+      MONGO_INITDB_DATABASE: prithvi_grid
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+    networks:
+      - prithvi-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/prithvi_grid --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # Redis 7 Alpine — pub/sub, BullMQ queues, session cache
+  redis:
+    image: redis:7-alpine
+    container_name: prithvi-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning --requirepass prithvi_redis_dev
+    volumes:
+      - redis_data:/data
+    networks:
+      - prithvi-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "prithvi_redis_dev", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Python FastAPI AI Algorithmic Engine (port 8000)
+  ai-engine:
+    build:
+      context: ./packages/ai-engine
+      dockerfile: Dockerfile
+    container_name: prithvi-ai-engine
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: "1"
+    networks:
+      - prithvi-network
+    volumes:
+      - ./packages/ai-engine:/app
+
+  # @prithvi/api — Node.js Fastify + Socket.IO backend (port 3001)
+  api:
+    build:
+      context: ./packages/api
+      dockerfile: Dockerfile
+    container_name: prithvi-api
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: development
+      PORT: 3001
+      MONGODB_URI: mongodb://prithvi:prithvi_dev_secret@mongodb:27017/prithvi_grid?authSource=admin
+      REDIS_URL: redis://:prithvi_redis_dev@redis:6379
+      JWT_SECRET: dev_jwt_secret_replace_in_production
+      AI_ENGINE_URL: http://ai-engine:8000
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ai-engine:
+        condition: service_started
+    networks:
+      - prithvi-network
+    volumes:
+      - ./packages/api/src:/app/src:ro
+
+  # @prithvi/app — Citizen & Manager PWA (port 5173)
+  app:
+    build:
+      context: ./packages/app
+      dockerfile: Dockerfile
+    container_name: prithvi-app
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://api:3001
+      VITE_SOCKET_URL: http://api:3001
+    depends_on:
+      - api
+    networks:
+      - prithvi-network
+    volumes:
+      - ./packages/app/src:/app/src:ro
+
+  # @prithvi/hq — Supreme Command Center (port 5174)
+  hq:
+    build:
+      context: ./packages/hq
+      dockerfile: Dockerfile
+    container_name: prithvi-hq
+    restart: unless-stopped
+    ports:
+      - "5174:5174"
+    environment:
+      VITE_API_URL: http://api:3001
+      VITE_SOCKET_URL: http://api:3001
+    depends_on:
+      - api
+    networks:
+      - prithvi-network
+    volumes:
+      - ./packages/hq/src:/app/src:ro
+
+volumes:
+  mongo_data:
+    driver: local
+  mongo_config:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  prithvi-network:
+    driver: bridge
+    name: prithvi-network

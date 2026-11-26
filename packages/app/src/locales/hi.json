@@ -1,0 +1,57 @@
+{
+  "app_name": "पृथ्वी ग्रिड",
+  "login": {
+    "title": "नमस्ते! पृथ्वी ग्रिड में लॉगिन करें",
+    "subtitle": "अपना 10 अंकों का मोबाइल नंबर डालें",
+    "phone_label": "मोबाइल नंबर",
+    "otp_label": "4-अंकों का OTP डालें",
+    "send_otp": "OTP भेजें",
+    "verify_otp": "लॉगिन करें",
+    "invalid_phone": "अमान्य फोन नंबर"
+  },
+  "roles": {
+    "SAFAI_MITRA": "सफाई मित्र",
+    "BWG_MANAGER": "BWG मैनेजर",
+    "SUPREME_HEAD": "सुप्रीम हेड"
+  },
+  "status": {
+    "HEALTHY": "🟢 सब ठीक है",
+    "TURN_WASTE": "🟡 कचरा घुमाओ",
+    "ADD_WATER": "🔵 पानी छिड़को",
+    "EMERGENCY": "🔴 संजीवनी Emergency"
+  },
+  "diary": {
+    "title": "कचरा आमदनी और खाद निकासी खाता",
+    "waste_in": "➕ कचरा डाला (Waste In)",
+    "fert_out": "➖ खाद निकाली (Fertilizer Out)",
+    "select_date": "🕒 समय और तारीख चुनें",
+    "save_entry": "खाता में दर्ज करें",
+    "weight_display": "वजन (किलो)"
+  },
+  "actions": {
+    "GEELA_KACHRA_DALA": "गीला कचरा डाला",
+    "SOOKHE_PATTE_DALA": "सूखे पत्ते / भूसा डाला",
+    "PAANI_CHHIDKA": "पानी छिड़का",
+    "GUD_PAANI_DALA": "गुड़ का पानी डाला",
+    "NEEM_POWDER_DALA": "नीम पाउडर / EM डाला",
+    "MITTI_DALI": "सूखी मिट्टी डाली",
+    "KACHRA_GHUMAYA": "कचरा घुमाया",
+    "KHAD_NIKALI": "खाद बाहर निकाली",
+    "CHHANAI_KI": "छनाई की",
+    "HAWA_DI": "ढक्कन खोलकर हवा दी",
+    "LEVEL_EQUAL": "कचरा लेवल बराबर किया",
+    "LAB_SAMPLE": "लैब सैंपल निकाला",
+    "GADDHA_SHIFT": "गड्ढा शिफ्ट किया",
+    "SENSOR_SAAF": "सेंसर प्रोब साफ किया",
+    "BAARISH_COVER": "बारिश का कवर लगाया/हटाया",
+    "DRAIN_SAAF": "ड्रेन पाइप साफ किया",
+    "HARDWARE_CHECK": "हार्डवेयर वायर/बॉक्स चेक किया",
+    "KEEDE_REPORT": "कीड़े / मैगट रिपोर्ट किए",
+    "BADBOO_CHECK": "बदबू चेक की (मैन्युअल)",
+    "EMERGENCY_REPORT": "आपातकालीन समस्या रिपोर्ट की"
+  },
+  "mark_done": "✅ काम पूरा हुआ (Mark Done)",
+  "history": {
+    "title": "मेरे पिछले काम"
+  }
+}

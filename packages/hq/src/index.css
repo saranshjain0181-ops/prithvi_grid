@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply bg-hq-bg text-hq-text font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0f1e;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+  }
+}
+
+@layer components {
+  .hq-card {
+    @apply bg-hq-surface border border-hq-border rounded-xl p-4;
+  }
+
+  .hq-btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-hq-bg;
+  }
+
+  .hq-btn-primary {
+    @apply hq-btn bg-hq-accent hover:bg-green-500 text-white focus:ring-hq-accent;
+  }
+
+  .hq-btn-secondary {
+    @apply hq-btn bg-hq-border hover:bg-gray-600 text-hq-text focus:ring-gray-500;
+  }
+
+  .hq-btn-danger {
+    @apply hq-btn bg-red-700 hover:bg-red-600 text-white focus:ring-red-500;
+  }
+
+  .hq-input {
+    @apply w-full bg-hq-bg border border-hq-border rounded-lg px-3 py-2 text-hq-text placeholder-hq-muted text-sm focus:outline-none focus:ring-2 focus:ring-hq-accent focus:border-transparent transition-all;
+  }
+
+  .hq-label {
+    @apply block text-xs font-medium text-hq-muted mb-1 uppercase tracking-wide;
+  }
+
+  .hq-select {
+    @apply hq-input appearance-none cursor-pointer;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold;
+  }
+}
+
+/* AG Grid dark theme overrides */
+.ag-theme-alpine-dark {
+  --ag-background-color: #111827;
+  --ag-foreground-color: #f8fafc;
+  --ag-border-color: #1f2937;
+  --ag-header-background-color: #0a0f1e;
+  --ag-header-foreground-color: #9ca3af;
+  --ag-row-hover-color: #1f2937;
+  --ag-selected-row-background-color: rgba(22, 163, 74, 0.15);
+  --ag-font-size: 13px;
+  --ag-grid-size: 4px;
+  --ag-row-height: 40px;
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: #0a0f1e !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #111827 !important;
+  color: #f8fafc !important;
+  border: 1px solid #1f2937;
+  border-radius: 8px !important;
+}
+
+.leaflet-popup-tip {
+  background: #111827 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(10, 15, 30, 0.8) !important;
+  color: #9ca3af !important;
+}
+
+/* Wizard step indicator */
+.wizard-step-active {
+  @apply bg-hq-accent text-white;
+}
+
+.wizard-step-completed {
+  @apply bg-green-700 text-white;
+}
+
+.wizard-step-pending {
+  @apply bg-hq-border text-hq-muted;
+}

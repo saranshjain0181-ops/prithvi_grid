@@ -1,0 +1,57 @@
+{
+  "app_name": "Prithvi Grid",
+  "login": {
+    "title": "Welcome to Prithvi Grid",
+    "subtitle": "Enter your 10-digit registered mobile number",
+    "phone_label": "Mobile Number",
+    "otp_label": "Enter 4-digit OTP",
+    "send_otp": "Send OTP",
+    "verify_otp": "Login",
+    "invalid_phone": "Invalid phone number"
+  },
+  "roles": {
+    "SAFAI_MITRA": "Safai Mitra",
+    "BWG_MANAGER": "BWG Manager",
+    "SUPREME_HEAD": "Supreme Head"
+  },
+  "status": {
+    "HEALTHY": "🟢 All Good",
+    "TURN_WASTE": "🟡 Turn Waste",
+    "ADD_WATER": "🔵 Spray Water",
+    "EMERGENCY": "🔴 Sanjivani Emergency"
+  },
+  "diary": {
+    "title": "Waste Inflow & Compost Outflow Ledger",
+    "waste_in": "➕ Waste In",
+    "fert_out": "➖ Fertilizer Out",
+    "select_date": "🕒 Select Date & Time",
+    "save_entry": "Record to Ledger",
+    "weight_display": "Weight (Kg)"
+  },
+  "actions": {
+    "GEELA_KACHRA_DALA": "Wet Waste Added",
+    "SOOKHE_PATTE_DALA": "Dry Leaves / Sawdust Added",
+    "PAANI_CHHIDKA": "Water Sprayed",
+    "GUD_PAANI_DALA": "Jaggery Water Sprayed",
+    "NEEM_POWDER_DALA": "Neem Powder / EM Added",
+    "MITTI_DALI": "Dry Soil Added",
+    "KACHRA_GHUMAYA": "Turned & Aerated Compost",
+    "KHAD_NIKALI": "Cured Compost Harvested",
+    "CHHANAI_KI": "Compost Sieved",
+    "HAWA_DI": "Lid Opened for Aeration",
+    "LEVEL_EQUAL": "Waste Leveled",
+    "LAB_SAMPLE": "Lab Sample Taken",
+    "GADDHA_SHIFT": "Pit Shifted",
+    "SENSOR_SAAF": "Sensor Probe Cleaned",
+    "BAARISH_COVER": "Rain Cover Adjusted",
+    "DRAIN_SAAF": "Drain Pipe Cleared",
+    "HARDWARE_CHECK": "Hardware Wire / Box Inspected",
+    "KEEDE_REPORT": "Insects / Maggots Reported",
+    "BADBOO_CHECK": "Odor Checked (Manual)",
+    "EMERGENCY_REPORT": "Emergency Issue Reported"
+  },
+  "mark_done": "✅ Mark Done",
+  "history": {
+    "title": "My Recent Tasks"
+  }
+}

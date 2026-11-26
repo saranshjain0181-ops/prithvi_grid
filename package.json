@@ -1,0 +1,26 @@
+{
+  "name": "prithvi-grid",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Prithvi Grid — Smart Compost Monitoring & SWM Compliance Platform",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "pnpm --filter @prithvi-grid/api dev",
+    "dev:app": "pnpm --filter @prithvi-grid/app dev",
+    "dev:hq": "pnpm --filter @prithvi-grid/hq dev",
+    "dev:ai": "python packages/ai-engine/main.py",
+    "dev": "concurrently \"pnpm dev:api\" \"pnpm dev:app\" \"pnpm dev:hq\" \"pnpm dev:ai\"",
+    "build:all": "pnpm --filter @prithvi-grid/api build && pnpm --filter @prithvi-grid/app build && pnpm --filter @prithvi-grid/hq build",
+    "test": "pnpm --filter @prithvi-grid/api test",
+    "lint": "pnpm --recursive lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
